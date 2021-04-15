@@ -71,7 +71,7 @@ const gramado = {
     altura: 112,
     x: 0,
     y: canvas.height - 112,
-    desenha() {
+    desenhar() {
       contexto.drawImage(
         sprites,
         gramado.spriteX, gramado.spriteY,
@@ -90,15 +90,38 @@ const gramado = {
     },
   };
 
+  // [tela de inicio ]
+  const mensagemGetReady = {
+    sX: 134,
+    sY: 0,
+    w: 174,
+    h: 152,
+    x: (canvas.width / 2) - 174 / 2,
+    y: 50,
+    desenhar() {
+      contexto.drawImage(
+        sprites,
+        mensagemGetReady.sX,mensagemGetReady.sY,
+        mensagemGetReady.w,mensagemGetReady.h,
+        mensagemGetReady.x,mensagemGetReady.y,
+        mensagemGetReady.w, mensagemGetReady.h
+      );
+    }
+
+
+  }
+
 
 function looping(){
    //ordem em que e´ desenhada influencia ou seja sobre põe as imagens
-    
-   planoDeFundo.desenhar();
-    gramado.desenha();
-    flappyBird.desenhar(); 
+   
     flappyBird.atualiza();
- 
+    planoDeFundo.desenhar();
+    gramado.desenhar();
+    flappyBird.desenhar(); 
+
+    mensagemGetReady.desenhar();
+  
    
 
     requestAnimationFrame(looping);
