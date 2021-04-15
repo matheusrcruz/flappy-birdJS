@@ -1,7 +1,7 @@
 # Jogo do  FlappyBird.JS
 
 
-   Abra o projeto clonadao(https://github.com/matheusrcruz/flappy-birdJS)você vai baixar os arquivos,
+   Abra o projeto clonadao(https://github.com/matheusrcruz/flappy-birdJS)  você vai baixar os arquivos,
  executar o index.html que vai aparecer a tela inicial agora é so se divertir:
   estado atual (In progress).
  ![image](https://user-images.githubusercontent.com/31409846/113592908-233e6e00-960c-11eb-8354-4233c52e2ca2.png)
