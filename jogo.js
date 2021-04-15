@@ -4,8 +4,6 @@ sprites.src = './sprites.png';
 const canvas = document.querySelector('canvas');
 const contexto = canvas.getContext('2d');
 
-
-
 //Personagem Objeto
 const flappyBird = 
     {
@@ -34,6 +32,7 @@ contexto.drawImage
     );
  }
 }
+
 //plano de fundo
 const planoDeFundo = {
     spriteX: 390,
@@ -45,7 +44,6 @@ const planoDeFundo = {
 desenhar() {
       contexto.fillStyle = '#B9DEED';
       contexto.fillRect(0,0, canvas.width, canvas.height)
-  
       contexto.drawImage(
         sprites,
         planoDeFundo.spriteX, planoDeFundo.spriteY,
@@ -53,7 +51,6 @@ desenhar() {
         planoDeFundo.x, planoDeFundo.y,
         planoDeFundo.largura, planoDeFundo.altura,
       );
-  
       contexto.drawImage(
         sprites,
         planoDeFundo.spriteX, planoDeFundo.spriteY,
@@ -63,6 +60,7 @@ desenhar() {
       );
     },
   };
+
 // Gramado
 const gramado = {
     spriteX: 0,
@@ -79,7 +77,6 @@ const gramado = {
         gramado.x, gramado.y,
         gramado.largura, gramado.altura,
       );
-  
       contexto.drawImage(
         sprites,
         gramado.spriteX, gramado.spriteY,
@@ -107,25 +104,56 @@ const gramado = {
         mensagemGetReady.w, mensagemGetReady.h
       );
     }
-
-
   }
 
+  ///
+  /// Telas Objeto guarda todos atributos da tela
+  ///
+  //saber em qual tela esta´
+  let telaAtiva = {
+  
+  };
+  function mudaTela(novaTela){
+    telaAtiva = novaTela;
+  }
+  const Telas = {
+    INICIO:{
+      desenhar(){
+        planoDeFundo.desenhar();
+        gramado.desenhar();
+        flappyBird.desenhar(); 
+        mensagemGetReady.desenhar();
+      },click(){
+        mudaTela(Telas.JOGO);
+      },
+      atualiza(){
+      } 
+    }
+  
+  };
+
+  Telas.JOGO = {
+    desenhar(){
+      planoDeFundo.desenhar();
+      gramado.desenhar();
+      flappyBird.desenhar(); 
+
+    }, 
+    atualiza(){
+      flappyBird.atualiza();
+    }
+  };
 
 function looping(){
-   //ordem em que e´ desenhada influencia ou seja sobre põe as imagens
-   
-    flappyBird.atualiza();
-    planoDeFundo.desenhar();
-    gramado.desenhar();
-    flappyBird.desenhar(); 
-
-    mensagemGetReady.desenhar();
-  
-   
+    telaAtiva.desenhar();
+    telaAtiva.atualiza();
 
     requestAnimationFrame(looping);
-    //Ajuda a desenhar na tela da melhor maneira possivel  fps
 }
-
+window.addEventListener('click', function() {
+  if(telaAtiva.click){
+    telaAtiva.click();
+  }
+});
+mudaTela(Telas.INICIO);
 looping();
